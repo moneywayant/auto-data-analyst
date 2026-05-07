@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import Papa from 'papaparse';
 import AutoCharts from './components/AutoCharts';
+import ChatAssistant from './components/ChatAssistant';
 import ColumnTypes from './components/ColumnTypes';
 import FileUploader from './components/FileUploader';
 import Insights from './components/Insights';
@@ -80,6 +81,7 @@ export default function App() {
               <a href="#upload" className="rounded-full px-3 py-1.5 transition hover:bg-white hover:text-slate-950 dark:hover:bg-white/10 dark:hover:text-white">Upload</a>
               <a href="#insights" className="rounded-full px-3 py-1.5 transition hover:bg-white hover:text-slate-950 dark:hover:bg-white/10 dark:hover:text-white">Insights</a>
               <a href="#charts" className="rounded-full px-3 py-1.5 transition hover:bg-white hover:text-slate-950 dark:hover:bg-white/10 dark:hover:text-white">Charts</a>
+              <a href="#assistant" className="rounded-full px-3 py-1.5 transition hover:bg-white hover:text-slate-950 dark:hover:bg-white/10 dark:hover:text-white">Assistant</a>
             </div>
             <button
               type="button"
@@ -126,23 +128,30 @@ export default function App() {
             </section>
           )}
 
-          {isLoading ? (
-            <LoadingDashboard />
-          ) : (
-            <div className="mt-8 grid gap-6">
-              <div id="insights">
-                <Insights insights={insights} />
+          <div className="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
+            <div className="min-w-0">
+              {isLoading ? (
+                <LoadingDashboard />
+              ) : (
+                <div className="grid gap-6">
+                <div id="insights">
+                  <Insights insights={insights} />
+                </div>
+                <div className="grid gap-6 2xl:grid-cols-[1fr_1.1fr]">
+                  <ColumnTypes columns={columns} />
+                  <SummaryStats stats={stats} />
+                </div>
+                <div id="charts">
+                  <AutoCharts rows={rows} columns={columns} />
+                </div>
+                <PreviewTable rows={rows} />
               </div>
-              <div className="grid gap-6 xl:grid-cols-[1fr_1.1fr]">
-                <ColumnTypes columns={columns} />
-                <SummaryStats stats={stats} />
-              </div>
-              <div id="charts">
-                <AutoCharts rows={rows} columns={columns} />
-              </div>
-              <PreviewTable rows={rows} />
+              )}
             </div>
-          )}
+            <div id="assistant" className="min-w-0">
+              <ChatAssistant rows={rows} columns={columns} stats={stats} insights={insights} isLoading={isLoading} />
+            </div>
+          </div>
         </div>
       </div>
     </main>
