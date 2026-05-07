@@ -3,12 +3,34 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-mist text-ink antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
   button,
   input {
     font: inherit;
+  }
+}
+
+@layer utilities {
+  .app-surface {
+    background-image:
+      linear-gradient(rgba(6, 182, 212, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 182, 212, 0.07) 1px, transparent 1px),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(241, 245, 249, 0.92) 46%, rgba(226, 232, 240, 0.78));
+    background-size: 44px 44px, 44px 44px, 100% 100%;
+  }
+
+  .dark .app-surface {
+    background-image:
+      linear-gradient(rgba(125, 211, 252, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125, 211, 252, 0.07) 1px, transparent 1px),
+      linear-gradient(135deg, #090e18 0%, #0c1423 50%, #111827 100%);
   }
 }

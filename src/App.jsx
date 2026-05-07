@@ -63,11 +63,7 @@ export default function App() {
 
   return (
     <main className={isDark ? 'dark min-h-screen' : 'min-h-screen'}>
-      <div className="min-h-screen overflow-hidden bg-slate-50 text-slate-950 transition-colors duration-500 dark:bg-[#090e18] dark:text-white">
-        <div className="pointer-events-none fixed inset-0 overflow-hidden">
-          <div className="absolute left-[-12rem] top-[-10rem] h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-400/16" />
-          <div className="absolute right-[-8rem] top-24 h-96 w-96 rounded-full bg-violet-500/20 blur-3xl dark:bg-violet-500/16" />
-        </div>
+      <div className="app-surface min-h-screen overflow-hidden bg-slate-50 text-slate-950 transition-colors duration-500 dark:bg-[#090e18] dark:text-white">
 
         <nav className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-[#090e18]/78">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3">
